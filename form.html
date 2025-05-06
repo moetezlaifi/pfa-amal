@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6f0;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d63384;
+    }
+
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #b30059;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #d63384;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #bf2e76;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .low-risk {
+      background-color: #c8e6c9;
+      color: #256029;
+    }
+
+    .medium-risk {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .high-risk {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎀 Quelques réponses aujourd'hui, pour ne pas laisser demain au hasard.</h1>
+
+<form id="riskForm">
+  <!-- Signes Cliniques -->
+<div class="section">
+    <h2>Signes Cliniques</h2>
+    <div class="question">
+      <label><input type="checkbox" class="signes" value="15"> Nodule dur non mobile</label>
+      <label><input type="checkbox" class="signes" value="10"> Écoulement sanglant</label>
+      <label><input type="checkbox" class="signes" value="8"> Rétraction du mamelon</label>
+      <label><input type="checkbox" class="signes" value="7"> Peau d'orange</label>
+      <label><input type="checkbox" class="signes" value="5"> Chaleur/rougeur persistante</label>
+      <label><input type="checkbox" class="signes" value="5"> Ganglions axillaires</label>
+      <label><input type="checkbox" class="signes" value="5"> Changement de taille ou forme du sein</label>
+      <label><input type="checkbox" class="signes" value="5"> Autres (démangeaisons, douleur non cyclique...)</label>
+      
+    </div> 
+  </div>
+  
+
+
+  <div class="section">
+    <h2>Facteurs de risque</h2>
+    <div class="question">
+      <label>Age</label>
+      <select name="factor1">
+        <option value="0">Moins que 50 ans</option>
+        <option value="6">Plus que 50 ans</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>Sexe</label>
+      <select name="factor2">
+        <option value="0">Homme</option>
+        <option value="4">Femme</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>Antécédents familiaux (cancer du seins)</label>
+      <select name="factor3">
+        <option value="0">Non</option>
+        <option value="8">Oui</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>Mammographie régulière</label>
+      <select name="factor4">
+        <option value="5">Non</option>
+        <option value="0">Oui</option>
+      </select>
+    </div>
+    <div class="question">
+        <label>Surpoids</label>
+        <select name="factor5">
+          <option value="0">Non</option>
+          <option value="4">Oui</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Consommation régulière d'alcool</label>
+        <select name="factor6">
+          <option value="0">Non</option>
+          <option value="4">Oui</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Sédentarité (manque d'activité physique)</label>
+        <select name="factor7">
+          <option value="0">Non</option>
+          <option value="3">Oui</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Première grossesse</label>
+        <select name="factor8">
+          <option value="3"> Plus que 30 ans</option>
+          <option value="0"> Moins que 30 ans</option>
+          <option value="0"> Pas de grossesse</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Traitement hormonale prolongé</label>
+        <select name="factor9">
+          <option value="0">Non</option>
+          <option value="3">Oui</option>
+        </select>
+      </div>
+
+  </div>
+
+  <button type="submit">Submit</button>
+
+  <div id="result"></div>
+</form>
+
+<script>
+  document.getElementById('riskForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const selects = document.querySelectorAll('select');
+    let score = 0;
+
+    selects.forEach(select => {
+        score += parseInt(select.value);
+      });
+  
+    const signes = document.querySelectorAll('.signes:checked');
+    signes.forEach(sign => {
+        score += parseInt(sign.value);
+    });
+  
+
+    const result = document.getElementById('result');
+
+    if (score <= 25) {
+      result.className = 'low-risk';
+      result.textContent = `Score: ${score}/100 – 🟢 Risque normal. Surveillance régulière recommandée.`;
+    } else if (score <= 60) {
+      result.className = 'medium-risk';
+      result.textContent = `Score: ${score}/100 – 🟡 Risque intermidiaire. Consulter un médecin pour avis.`;
+    } else {
+      result.className = 'high-risk';
+      result.textContent = `Score: ${score}/100 – 🔴 Risque élevé. Bilan médical conseillé rapidement.`;
+    }
+  });
+</script>
+
+</body>
+</html>

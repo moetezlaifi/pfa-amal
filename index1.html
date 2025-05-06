@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santé et Bien-être</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('images/bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+    .woman-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 400px;
+      animation: floatWoman 2s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .woman-container img {
+      width: 100%;
+    }
+    @keyframes floatWoman {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: 100px;
+      right: 60px;
+      width: 20px;
+      height: 20px;
+      background-color: #ff5c8d;
+      clip-path: polygon(50% 0%, 61% 13%, 75% 15%, 86% 26%, 90% 40%, 85% 55%, 70% 70%, 50% 90%, 30% 70%, 15% 55%, 10% 40%, 14% 26%, 25% 15%, 39% 13%);
+      opacity: 0;
+      animation: floatHearts 4s linear infinite;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .heart:nth-child(2) {
+      animation-delay: 0s;
+    }
+
+    .heart:nth-child(3) {
+      animation-delay: 1.5s;
+      right: 40px;
+    }
+
+    .heart:nth-child(4) {
+      animation-delay: 3s;
+      right: 80px;
+    }
+    .overlay {
+      position: absolute;
+      top: 70%;
+      left: 30%;
+      background-color: #fac9dc; 
+      padding: 20px;
+      border-radius: 30px;
+      text-align: center;
+      max-width: 400px;
+      backdrop-filter: blur(6px);
+    }
+
+
+    .overlay a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #FF69B4;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .overlay a:hover {
+      background-color: #ff3385;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <a href="form.html">Aller au formulaire</a>
+  </div>
+  <div class="container">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+  </div>
+  <div class="woman-container">
+    <img class="woman" src="images/woman.png" alt="Woman" />
+  </div>
+</body>
+</html>
